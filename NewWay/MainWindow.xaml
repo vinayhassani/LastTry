@@ -1,0 +1,62 @@
+﻿<Window x:Class="NewWay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NewWay"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+    <Grid>
+        <Button x:Name="btnSave" HorizontalAlignment="Left" TabIndex="100" Content="Save" Width="100" Margin="66,112,0,177" Command="{Binding Path= SaveCommand}" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="114,26,0,0" Name="txtID" VerticalAlignment="Top" Width="120"  Text="{Binding  emp.ID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Background="#f0f8ff"/>
+        <TextBox Height="23" Background="#f0f8ff" HorizontalAlignment="Left" Margin="114,55,0,0" Name="txFirstName" VerticalAlignment="Top" Width="120" Text="{Binding emp.FirstName ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox Height="23" Background="#f0f8ff" HorizontalAlignment="Left" Margin="114,84,0,0" Name="txtAddress" VerticalAlignment="Top" Width="120" Text="{Binding emp.Address ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="84,26,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="First Name:" Height="28" HorizontalAlignment="Left" Margin="40,50,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="Address:" Height="28" HorizontalAlignment="Left" Margin="53,75,0,0" Name="label3" VerticalAlignment="Top" />
+
+        <!--<DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Margin="114,147,0,0" VerticalAlignment="Top"  AutoGenerateColumns="True" GridLinesVisibility="All" HeadersVisibility="All"
+                  Background="LightGray" RowBackground="LightYellow" AlternatingRowBackground="LightBlue" DisplayMemberPath="LastTry"
+    IsReadOnly="True"  AreRowDetailsFrozen="True" CanUserSortColumns = "False" CanUserResizeColumns="False" FrozenColumnCount="2" CanUserReorderColumns="False" 
+ VerticalScrollBarVisibility="Visible" CanUserAddRows="True" ItemsSource="{Binding emplist,NotifyOnSourceUpdated=True}"
+              SelectionChanged="dataGrid1_SelectionChanged" Loaded="dataGrid1_Loaded" SelectionMode="Extended" SelectionUnit="FullRow" >
+                <DataGrid.Columns>
+                
+        -->
+        <!--<DataGridTextColumn Binding="{Binding Path=emp.ID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Binding="{Binding Path=emp.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                <DataGridTextColumn Binding="{Binding Path=emp.Address,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
+        <!--
+        
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" Name="editbtn" Click="editbtn_Click" ></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>-->
+
+        <ListView Margin="66,157,121,40" ItemsSource="{Binding emplist}" Name="listview" Loaded="listview_Loaded" SelectionChanged="dataGrid1_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Edit" Click="editbtn_Click"></Button>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ID}" Width="100"/>
+                    <GridViewColumn Header="First Name" DisplayMemberBinding="{Binding FirstName}" Width="100" />
+                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="100" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button x:Name="editbtn" Content="Update" HorizontalAlignment="Right" TabIndex="100" Width="100" Margin="0,112,251,177" Command="{Binding EditCommand}"/>
+        <Button x:Name="deletebtn" Content="Delete" HorizontalAlignment="Left" Margin="266,112,0,0" VerticalAlignment="Top" Width="100" TabIndex="100" Height="23" Command="{Binding DeleteCommand}"/>
+        <Button x:Name="new" Content="New" HorizontalAlignment="Left" Margin="366,112,0,0" VerticalAlignment="Top" Width="75" Click="new_Click"/>
+    </Grid>
+</Window>
